@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "miningmadness:item/lapis_infused_netherite_ingot"
+  }
+}

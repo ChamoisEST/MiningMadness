@@ -1,0 +1,30 @@
+{
+  "type": "miningmadness:machine_infusing",
+  "energy": 8000,
+  "ingredients": [
+    {
+      "tag": "miningmadness:infusion/infusable_machines"
+    },
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "minecraft:emerald"
+    }
+  ],
+  "output": {
+    "item": ""
+  },
+  "output_machine_stats": [
+    {
+      "infuse_type": "silk_touch",
+      "amount": 1
+    }
+  ]
+}

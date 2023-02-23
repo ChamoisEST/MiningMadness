@@ -1,0 +1,30 @@
+{
+  "type": "miningmadness:machine_infusing",
+  "energy": 8000,
+  "ingredients": [
+    {
+      "tag": "miningmadness:infusion/infusable_machines"
+    },
+    {
+      "item": "minecraft:blaze_rod"
+    },
+    {
+      "item": "minecraft:blaze_rod"
+    },
+    {
+      "item": ""
+    },
+    {
+      "item": ""
+    }
+  ],
+  "output": {
+    "item": ""
+  },
+  "output_machine_stats": [
+    {
+      "infuse_type": "efficiency",
+      "amount": 35
+    }
+  ]
+}

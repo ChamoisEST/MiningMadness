@@ -1,0 +1,30 @@
+{
+  "type": "miningmadness:machine_infusing",
+  "energy": 3000,
+  "ingredients": [
+    {
+      "tag": "miningmadness:infusion/infusable_machines"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "output": {
+    "item": ""
+  },
+  "output_machine_stats": [
+    {
+      "infuse_type": "speed",
+      "amount": 8
+    }
+  ]
+}

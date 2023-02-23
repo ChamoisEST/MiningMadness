@@ -1,0 +1,34 @@
+{
+  "type": "miningmadness:machine_infusing",
+  "energy": 7000,
+  "ingredients": [
+    {
+      "tag": "miningmadness:infusion/infusable_machines"
+    },
+    {
+      "item": "minecraft:ender_eye"
+    },
+    {
+      "item": ""
+    },
+    {
+      "item": ""
+    },
+    {
+      "item": ""
+    }
+  ],
+  "output": {
+    "item": ""
+  },
+  "output_machine_stats": [
+    {
+      "infuse_type": "range",
+      "amount": 5
+    },
+    {
+      "infuse_type": "efficiency",
+      "amount": 15
+    }
+  ]
+}

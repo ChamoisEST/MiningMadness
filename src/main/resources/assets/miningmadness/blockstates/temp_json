@@ -1,0 +1,70 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "miningmadness:block/void_filter"
+      }
+    },
+    {
+      "apply": {
+        "model": "miningmadness:block/filter_connector",
+        "uvlock": true
+      },
+      "when": {
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "miningmadness:block/filter_connector",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "miningmadness:block/filter_connector",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "miningmadness:block/filter_connector",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "miningmadness:block/filter_connector",
+        "uvlock": true,
+        "y": 270,
+        "x": 90
+      },
+      "when": {
+        "top": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "miningmadness:block/filter_connector",
+        "uvlock": true,
+        "y": 270,
+        "x": 270
+      },
+      "when": {
+        "bottom": "true"
+      }
+    }
+  ]
+}

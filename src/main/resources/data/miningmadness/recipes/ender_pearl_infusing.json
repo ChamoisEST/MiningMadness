@@ -1,0 +1,34 @@
+{
+  "type": "miningmadness:machine_infusing",
+  "energy": 6000,
+  "ingredients": [
+    {
+      "tag": "miningmadness:infusion/infusable_machines"
+    },
+    {
+      "item": "minecraft:ender_pearl"
+    },
+    {
+      "item": ""
+    },
+    {
+      "item": ""
+    },
+    {
+      "item": ""
+    }
+  ],
+  "output": {
+    "item": ""
+  },
+  "output_machine_stats": [
+    {
+      "infuse_type": "range",
+      "amount": 5
+    },
+    {
+      "infuse_type": "energy_capacity",
+      "amount": 3
+    }
+  ]
+}

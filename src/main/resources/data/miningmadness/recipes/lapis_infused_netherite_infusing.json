@@ -1,0 +1,38 @@
+{
+  "type": "miningmadness:machine_infusing",
+  "energy": 60000,
+  "ingredients": [
+    {
+      "tag": "miningmadness:infusion/infusable_machines"
+    },
+    {
+      "item": "miningmadness:lapis_infused_netherite_ingot"
+    },
+    {
+      "item": ""
+    },
+    {
+      "item": ""
+    },
+    {
+      "item": ""
+    }
+  ],
+  "output": {
+    "item": ""
+  },
+  "output_machine_stats": [
+    {
+      "infuse_type": "fortune",
+      "amount": 170
+    },
+    {
+      "infuse_type": "speed",
+      "amount": 36
+    },
+    {
+      "infuse_type": "efficiency",
+      "amount": 11
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "type": "miningmadness:machine_infusing",
+  "energy": 15000,
+  "ingredients": [
+    {
+      "item": "minecraft:netherite_ingot"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
+    }
+  ],
+  "output": {
+    "item": "miningmadness:lapis_infused_netherite_ingot"
+  },
+
+  "output_machine_stats": []
+}

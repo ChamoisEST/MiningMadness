@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "miningmadness:block/advanced_quarry_front_inactive",
+    "side": "miningmadness:block/advanced_quarry_side",
+    "top": "miningmadness:block/quarry_top",
+    "bottom": "miningmadness:block/quarry_bottom"
+  }
+}
