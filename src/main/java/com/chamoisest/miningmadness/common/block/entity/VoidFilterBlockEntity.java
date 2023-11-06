@@ -1,20 +1,25 @@
 package com.chamoisest.miningmadness.common.block.entity;
 
-import com.chamoisest.miningmadness.client.screen.VoidFilterMenu;
+import com.chamoisest.miningmadness.common.block.entity.base.BaseInvBlockEntity;
+import com.chamoisest.miningmadness.common.container.VoidFilterMenu;
+import com.chamoisest.miningmadness.common.container.customhandler.FilterVoidItemHandler;
 import com.chamoisest.miningmadness.common.init.MMBlockEntities;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.items.ItemStackHandler;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class VoidFilterBlockEntity extends BlockEntity implements MenuProvider {
+public class VoidFilterBlockEntity extends BaseInvBlockEntity implements MenuProvider {
 
     protected final ContainerData data = new ContainerData() {
         @Override
@@ -37,8 +42,26 @@ public class VoidFilterBlockEntity extends BlockEntity implements MenuProvider {
         }
     };
 
-    public VoidFilterBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(MMBlockEntities.VOID_FILTER.get(), pPos, pBlockState);
+    public VoidFilterBlockEntity(BlockPos pos, BlockState state) {
+        super(pos, state, MMBlockEntities.VOID_FILTER.get(), VoidFilterMenu.SLOTS, true);
+        this.displayNameTranslatable = "Void Filter";
+
+        itemHandler = new FilterVoidItemHandler(VoidFilterMenu.SLOTS) {};
+    }
+
+    @Override
+    public void onContentsChanged() {
+        setChanged();
+    }
+
+    @Override
+    public int getNewSlotLimit() {
+        return 1;
+    }
+
+    @Override
+    public boolean isValid(int slot, @NotNull ItemStack stack) {
+        return true;
     }
 
     @Override
@@ -53,7 +76,8 @@ public class VoidFilterBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     public static void tick(Level level, BlockPos blockPos, BlockState blockState, VoidFilterBlockEntity pEntity) {
-        if(!level.isClientSide()) {
+        if (!level.isClientSide()) {
+
 
         }
     }

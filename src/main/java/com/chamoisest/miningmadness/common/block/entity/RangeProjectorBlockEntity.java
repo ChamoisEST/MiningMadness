@@ -1,6 +1,6 @@
 package com.chamoisest.miningmadness.common.block.entity;
 
-import com.chamoisest.miningmadness.client.screen.RangeProjectorMenu;
+import com.chamoisest.miningmadness.common.container.RangeProjectorMenu;
 import com.chamoisest.miningmadness.common.init.MMBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;

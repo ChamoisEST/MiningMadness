@@ -1,7 +1,7 @@
 package com.chamoisest.miningmadness.common.init;
 
 import com.chamoisest.miningmadness.MiningMadness;
-import com.chamoisest.miningmadness.client.screen.*;
+import com.chamoisest.miningmadness.common.container.*;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;

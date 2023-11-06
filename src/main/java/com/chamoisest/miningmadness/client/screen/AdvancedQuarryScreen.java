@@ -2,6 +2,7 @@ package com.chamoisest.miningmadness.client.screen;
 
 import com.chamoisest.miningmadness.MiningMadness;
 import com.chamoisest.miningmadness.client.screen.base.BaseScreen;
+import com.chamoisest.miningmadness.common.container.AdvancedQuarryMenu;
 import com.chamoisest.miningmadness.common.init.MMBlocks;
 import com.chamoisest.miningmadness.data.TextureData;
 import com.chamoisest.miningmadness.enums.MachineUpgradeEnum;

@@ -1,45 +1,52 @@
-package com.chamoisest.miningmadness.client.screen;
+package com.chamoisest.miningmadness.common.container;
 
 import com.chamoisest.miningmadness.client.screen.base.BaseMenu;
-import com.chamoisest.miningmadness.common.block.entity.MachineInfusingStationBlockEntity;
+import com.chamoisest.miningmadness.common.block.entity.BasicQuarryBlockEntity;
 import com.chamoisest.miningmadness.common.init.MMBlocks;
 import com.chamoisest.miningmadness.common.init.MMMenuTypes;
-import com.chamoisest.miningmadness.enums.MachineUpgradeEnum;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.SimpleContainerData;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 
-public class MachineInfusingStationMenu extends BaseMenu<MachineInfusingStationBlockEntity> {
+public class BasicQuarryMenu extends BaseMenu<BasicQuarryBlockEntity> {
 
-    public MachineInfusingStationMenu(int id, Inventory inv, FriendlyByteBuf extraData){
-        this(id, inv, (MachineInfusingStationBlockEntity) inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(14));
+    public static final int SLOTS = 12;
+
+    private static final int HOTBAR_SLOT_COUNT = 9;
+    private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
+    private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
+    private static final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
+    public static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
+    private static final int VANILLA_FIRST_SLOT_INDEX = 0;
+    private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
+
+    public BasicQuarryMenu(int id, Inventory inv, FriendlyByteBuf extraData){
+        this(id, inv, (BasicQuarryBlockEntity) inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(16));
     }
 
-    public MachineInfusingStationMenu(int id, Inventory inv, MachineInfusingStationBlockEntity entity, ContainerData data){
-        super(MMMenuTypes.MACHINE_INFUSING_STATION_MENU.get(), id, inv, entity, data, 6);
+    public BasicQuarryMenu(int id, Inventory inv, BasicQuarryBlockEntity entity, ContainerData data){
+        super(MMMenuTypes.BASIC_QUARRY_MENU.get(), id, inv, entity, data, SLOTS);
 
-        addPlayerInventorySlots(inv, 8, 97, 155);
+        addPlayerInventorySlots(inv, 8, 84, 142);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 44, 41));
-            this.addSlot(new SlotItemHandler(handler, 1, 44, 16));
-            this.addSlot(new SlotItemHandler(handler, 2, 69, 41));
-            this.addSlot(new SlotItemHandler(handler, 3, 44, 66));
-            this.addSlot(new SlotItemHandler(handler, 4, 19, 41));
-            this.addSlot(new SlotItemHandler(handler, 5, 89, 66){
-                @Override
-                public boolean mayPlace(@NotNull ItemStack stack) {
-                    return false;
-                }
-            });
+            this.addSlot(new SlotItemHandler(handler, 0, 16, 17));
+            this.addSlot(new SlotItemHandler(handler, 4, 16, 35));
+            this.addSlot(new SlotItemHandler(handler, 8, 16, 53));
+            this.addSlot(new SlotItemHandler(handler, 1, 34, 17));
+            this.addSlot(new SlotItemHandler(handler, 5, 34, 35));
+            this.addSlot(new SlotItemHandler(handler, 9, 34, 53));
+            this.addSlot(new SlotItemHandler(handler, 2, 52, 17));
+            this.addSlot(new SlotItemHandler(handler, 6, 52, 35));
+            this.addSlot(new SlotItemHandler(handler, 10, 52, 53));
+            this.addSlot(new SlotItemHandler(handler, 3, 70, 17));
+            this.addSlot(new SlotItemHandler(handler, 7, 70, 35));
+            this.addSlot(new SlotItemHandler(handler, 11, 70, 53));
         });
 
         addDataSlots(data);
@@ -53,16 +60,9 @@ public class MachineInfusingStationMenu extends BaseMenu<MachineInfusingStationB
     //  0 - 8 = hotbar slots (which will map to the InventoryPlayer slot numbers 0 - 8)
     //  9 - 35 = player inventory slots (which map to the InventoryPlayer slot numbers 9 - 35)
     //  36 - 44 = TileInventory slots, which map to our TileEntity slot numbers 0 - 8)
-    private static final int HOTBAR_SLOT_COUNT = 9;
-    private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
-    private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
-    private static final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
-    private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
-    private static final int VANILLA_FIRST_SLOT_INDEX = 0;
-    private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 6;
+    private static final int TE_INVENTORY_SLOT_COUNT = SLOTS;
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
@@ -100,7 +100,7 @@ public class MachineInfusingStationMenu extends BaseMenu<MachineInfusingStationB
     @Override
     public boolean stillValid(@NotNull Player player) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, MMBlocks.MACHINE_INFUSING_STATION.get());
+                player, MMBlocks.BASIC_QUARRY.get());
     }
 
     public int getSpeedInfused(){
@@ -127,38 +127,27 @@ public class MachineInfusingStationMenu extends BaseMenu<MachineInfusingStationB
         this.data.set(10, value);
     }
 
-    public int getProgress(){
+    public int getFortuneInfused(){
         return this.data.get(11);
     }
 
-    public void setProgress(int value){
+    public void setFortuneInfused(int value){
         this.data.set(11, value);
     }
 
-    public int getMaxProgress(){
+    public int getSilkTouchInfused(){
         return this.data.get(12);
     }
 
-    public void setMaxProgress(int value){
+    public void setSilkTouchInfused(int value){
         this.data.set(12, value);
     }
 
-    public float getProgressPercentage(){
-        return (float)getProgress() / getMaxProgress() * 100;
+    public int getRangeInfused(){
+        return this.data.get(13);
     }
 
-    public boolean isCrafting(){
-        return this.getProgress() > 0;
-    }
-
-    public boolean hasCraftingIngredientInSlot(int slot){
-        if((this.data.get(13) & (int)Math.pow(2, slot + 1)) != 0){
-            return true;
-        }
-        return false;
-    }
-
-    public int getSourceItemInfusedValue(MachineUpgradeEnum upgrade, ItemStack stack) {
-        return stack.getOrCreateTag().getInt(upgrade.getNBTName());
+    public void setRangeInfused(int value){
+        this.data.set(13, value);
     }
 }

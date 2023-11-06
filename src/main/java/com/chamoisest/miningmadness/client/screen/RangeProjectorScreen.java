@@ -2,6 +2,7 @@ package com.chamoisest.miningmadness.client.screen;
 
 import com.chamoisest.miningmadness.MiningMadness;
 import com.chamoisest.miningmadness.client.screen.base.BaseScreen;
+import com.chamoisest.miningmadness.common.container.RangeProjectorMenu;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;

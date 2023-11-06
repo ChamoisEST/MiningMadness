@@ -1,6 +1,6 @@
 package com.chamoisest.miningmadness.common.block.entity;
 
-import com.chamoisest.miningmadness.client.screen.MachineInfusingStationMenu;
+import com.chamoisest.miningmadness.common.container.MachineInfusingStationMenu;
 import com.chamoisest.miningmadness.common.block.entity.base.BaseMachineBlockEntity;
 import com.chamoisest.miningmadness.common.init.MMBlockEntities;
 import com.chamoisest.miningmadness.data.MachineUpgradeData;
@@ -79,7 +79,7 @@ public class MachineInfusingStationBlockEntity extends BaseMachineBlockEntity {
         }
     };
     public MachineInfusingStationBlockEntity(BlockPos pos, BlockState state) {
-        super(pos, state, MMBlockEntities.MACHINE_INFUSING_STATION.get(), 6, 512, 120);
+        super(pos, state, MMBlockEntities.MACHINE_INFUSING_STATION.get(), MachineInfusingStationMenu.SLOTS, 512, 120);
         this.displayNameTranslatable = "Machine Infusing Station";
         this.working = 1;
         this.statusTooltip = 9;

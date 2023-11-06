@@ -79,11 +79,11 @@ public class BaseScreen<T extends BaseMenu<?>> extends AbstractContainerScreen<T
     }
 
     protected void renderTooltips(PoseStack poseStack, int mouseX, int mouseY, int x, int y, int id, TypeEnum type) {
-        int tooltip = 0;
-        tooltip = switch (type){
+        int tooltip = switch (type){
             case MACHINE -> menu.getStatusTooltip();
             case REDSTONE -> menu.getRedstoneTooltip();
             case RANGE -> menu.getShowRangeTooltip();
+            case SIDEDNESS -> 13;
         };
 
         if(isMouseAboveArea(mouseX, mouseY, x, y, -24, 4 + id * 25, 24, 24)) {
@@ -180,6 +180,13 @@ public class BaseScreen<T extends BaseMenu<?>> extends AbstractContainerScreen<T
             btnRunning = addRenderableWidget(new TextureButton(leftPos - 24, topPos + 4 + id * 25, 24, 24, new TextureData().getTextureData(TypeEnum.MACHINE, menu.getNewWorking()), (p) -> {
                 int running = menu.getNewWorking();
                 MMMessages.sendToServer(getRunningButtonUpdatePacket(running));
+            }));
+        }
+    }
+    protected void addSidednessButton(int id){
+        if(menu != null) {
+            btnRunning = addRenderableWidget(new TextureButton(leftPos - 24, topPos + 4 + id * 25, 24, 24, new TextureData().getTextureData(TypeEnum.SIDEDNESS, 0), (p) -> {
+
             }));
         }
     }

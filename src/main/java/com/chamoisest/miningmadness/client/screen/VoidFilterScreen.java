@@ -2,10 +2,15 @@ package com.chamoisest.miningmadness.client.screen;
 
 import com.chamoisest.miningmadness.MiningMadness;
 import com.chamoisest.miningmadness.client.screen.base.BaseScreen;
+import com.chamoisest.miningmadness.common.container.VoidFilterMenu;
+import com.chamoisest.miningmadness.common.container.customslot.FilterVoidSlot;
+import com.chamoisest.miningmadness.networking.MMMessages;
+import com.chamoisest.miningmadness.networking.packet.GhostFilterVoidC2SPacket;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class VoidFilterScreen extends BaseScreen<VoidFilterMenu> {
@@ -19,6 +24,8 @@ public class VoidFilterScreen extends BaseScreen<VoidFilterMenu> {
     @Override
     protected void init() {
         super.init();
+
+        addSidednessButton(0);
     }
 
     @Override
@@ -36,4 +43,19 @@ public class VoidFilterScreen extends BaseScreen<VoidFilterMenu> {
         renderBackground(pPoseStack);
         super.render(pPoseStack, mouseX, mouseY, delta);
     }
+
+//    @Override
+//    public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
+//        if(hoveredSlot == null || !(hoveredSlot instanceof FilterVoidSlot)){
+//            return super.mouseClicked(pMouseX, pMouseY, pButton);
+//        }
+//
+//        ItemStack stack = this.menu.getCarried();
+//        stack = stack.copy();
+//        hoveredSlot.set(stack);
+//        MMMessages.sendToServer(new GhostFilterVoidC2SPacket(hoveredSlot.index, stack));
+//
+//        return true;
+//    }
+
 }

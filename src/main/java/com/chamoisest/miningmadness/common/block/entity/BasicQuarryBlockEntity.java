@@ -1,6 +1,6 @@
 package com.chamoisest.miningmadness.common.block.entity;
 
-import com.chamoisest.miningmadness.client.screen.BasicQuarryMenu;
+import com.chamoisest.miningmadness.common.container.BasicQuarryMenu;
 import com.chamoisest.miningmadness.common.block.entity.base.BaseQuarryBlockEntity;
 import com.chamoisest.miningmadness.common.init.MMBlockEntities;
 import com.chamoisest.miningmadness.enums.MachineUpgradeEnum;
@@ -67,7 +67,7 @@ public class BasicQuarryBlockEntity extends BaseQuarryBlockEntity {
         }
     };
     public BasicQuarryBlockEntity(BlockPos pos, BlockState state) {
-        super(pos, state, MMBlockEntities.BASIC_QUARRY.get(), 12, 512, 60);
+        super(pos, state, MMBlockEntities.BASIC_QUARRY.get(), BasicQuarryMenu.SLOTS, 512, 60);
         this.displayNameTranslatable = "Basic Quarry";
         this.baseEnergyReqForOperation = 1000;
     }

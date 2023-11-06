@@ -22,6 +22,7 @@ public class TooltipData {
         tooltipList.put(10, Component.translatable("tooltip.miningmadness.machine_cant_get_new_stats"));
         tooltipList.put(11, Component.translatable("tooltip.miningmadness.display_range_off"));
         tooltipList.put(12, Component.translatable("tooltip.miningmadness.display_range"));
+        tooltipList.put(13, Component.translatable("tooltip.miningmadness.toggle_sidedness"));
     }
 
     public Component getToolTipComponent(int key){

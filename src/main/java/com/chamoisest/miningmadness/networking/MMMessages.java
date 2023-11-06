@@ -1,6 +1,7 @@
 package com.chamoisest.miningmadness.networking;
 
 import com.chamoisest.miningmadness.MiningMadness;
+import com.chamoisest.miningmadness.networking.packet.GhostFilterVoidC2SPacket;
 import com.chamoisest.miningmadness.networking.packet.RedstoneButtonSyncC2SPacket;
 import com.chamoisest.miningmadness.networking.packet.RunningButtonSyncC2SPacket;
 import com.chamoisest.miningmadness.networking.packet.ShowRangeButtonSyncC2SPacket;
@@ -45,6 +46,12 @@ public class MMMessages {
                 .decoder(ShowRangeButtonSyncC2SPacket::new)
                 .encoder(ShowRangeButtonSyncC2SPacket::toBytes)
                 .consumerMainThread(ShowRangeButtonSyncC2SPacket::handle)
+                .add();
+
+        net.messageBuilder(GhostFilterVoidC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(GhostFilterVoidC2SPacket::new)
+                .encoder(GhostFilterVoidC2SPacket::toBytes)
+                .consumerMainThread(GhostFilterVoidC2SPacket::handle)
                 .add();
     }
 

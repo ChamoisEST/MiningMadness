@@ -6,26 +6,20 @@ import com.chamoisest.miningmadness.util.MMEnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class BaseMachineBlockEntity extends BlockEntity implements MenuProvider {
-    protected final ItemStackHandler itemHandler;
+public class BaseMachineBlockEntity extends BaseInvBlockEntity implements MenuProvider {
 
     public final MMEnergyStorage ENERGY_STORAGE;
 
@@ -35,11 +29,7 @@ public class BaseMachineBlockEntity extends BlockEntity implements MenuProvider 
     protected int baseEnergyCapacity = 100000;
     protected int baseRange = 5;
 
-    protected LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
-
     protected LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
-
-    protected String displayNameTranslatable;
 
     protected int working = 0;
     protected int statusTooltip = 4;
@@ -71,15 +61,8 @@ public class BaseMachineBlockEntity extends BlockEntity implements MenuProvider 
     }
 
     public BaseMachineBlockEntity(BlockPos pos, BlockState state, BlockEntityType beType, int invSize, int baseMaxTransfer, int baseEnergyReq){
-        super(beType, pos, state);
+        super(pos, state, beType, invSize, false);
         this.energy_req = baseEnergyReq;
-
-        itemHandler = new ItemStackHandler(invSize) {
-            @Override
-            protected void onContentsChanged(int slot) {
-                setChanged();
-            }
-        };
 
         ENERGY_STORAGE = new MMEnergyStorage(100000, baseMaxTransfer) {
             @Override
@@ -90,22 +73,34 @@ public class BaseMachineBlockEntity extends BlockEntity implements MenuProvider 
     }
 
     @Override
+    public void onContentsChanged() {
+        setChanged();
+    }
+
+    @Override
+    public int getNewSlotLimit() {
+        return 64;
+    }
+
+    @Override
+    public boolean isValid(int slot, @NotNull ItemStack stack) {
+        return true;
+    }
+
+    @Override
     public void onLoad() {
         super.onLoad();
-        lazyItemHandler = LazyOptional.of(() -> itemHandler);
         lazyEnergyHandler = LazyOptional.of(() -> ENERGY_STORAGE);
     }
 
     @Override
     public void invalidateCaps() {
         super.invalidateCaps();
-        lazyItemHandler.invalidate();
         lazyEnergyHandler.invalidate();
     }
 
     @Override
     protected void saveAdditional(CompoundTag nbt) {
-        nbt.put("inventory", itemHandler.serializeNBT());
         nbt.putInt("energy", ENERGY_STORAGE.getEnergyStored());
         nbt.putInt("working", getWorking());
         nbt.putInt("status_tooltip", getStatusTooltip());
@@ -126,7 +121,6 @@ public class BaseMachineBlockEntity extends BlockEntity implements MenuProvider 
     @Override
     public void load(@NotNull CompoundTag nbt) {
         super.load(nbt);
-        itemHandler.deserializeNBT(nbt.getCompound("inventory"));
         ENERGY_STORAGE.setEnergy(nbt.getInt("energy"));
         this.statusTooltip = nbt.getInt("status_tooltip");
         this.working = nbt.getInt("working");
@@ -149,22 +143,7 @@ public class BaseMachineBlockEntity extends BlockEntity implements MenuProvider 
             return lazyEnergyHandler.cast();
         }
 
-        if(cap == ForgeCapabilities.ITEM_HANDLER) {
-            return lazyItemHandler.cast();
-        }
-
         return super.getCapability(cap, side);
-    }
-
-    @Override
-    public @NotNull Component getDisplayName() {
-        return Component.translatable(displayNameTranslatable);
-    }
-
-    @Nullable
-    @Override
-    public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
-        return null;
     }
 
     public static <T extends BaseMachineBlockEntity> boolean checkRedstone(Level level, T pEntity){

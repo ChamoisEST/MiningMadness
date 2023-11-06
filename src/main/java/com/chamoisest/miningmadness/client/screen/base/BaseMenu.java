@@ -8,7 +8,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jetbrains.annotations.NotNull;
 
-public class BaseMenu<T extends BlockEntity> extends AbstractContainerMenu {
+public abstract class BaseMenu<T extends BlockEntity> extends AbstractContainerMenu {
 
     public T blockEntity;
     protected Level level;
@@ -26,9 +26,16 @@ public class BaseMenu<T extends BlockEntity> extends AbstractContainerMenu {
         return this.blockEntity;
     }
 
+
+
     @Override
     public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
         return null;
+    }
+
+    @Override
+    public void clicked(int pSlotId, int pButton, ClickType pClickType, Player pPlayer) {
+        super.clicked(pSlotId, pButton, pClickType, pPlayer);
     }
 
     @Override

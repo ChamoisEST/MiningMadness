@@ -1,6 +1,6 @@
 package com.chamoisest.miningmadness.common.block.entity;
 
-import com.chamoisest.miningmadness.client.screen.AdvancedQuarryMenu;
+import com.chamoisest.miningmadness.common.container.AdvancedQuarryMenu;
 import com.chamoisest.miningmadness.common.block.entity.base.BaseQuarryBlockEntity;
 import com.chamoisest.miningmadness.common.init.MMBlockEntities;
 import com.chamoisest.miningmadness.enums.MachineUpgradeEnum;
@@ -69,7 +69,7 @@ public class AdvancedQuarryBlockEntity extends BaseQuarryBlockEntity {
         }
     };
     public AdvancedQuarryBlockEntity(BlockPos pos, BlockState state) {
-        super(pos, state, MMBlockEntities.ADVANCED_QUARRY.get(), 12, 512, 60);
+        super(pos, state, MMBlockEntities.ADVANCED_QUARRY.get(), AdvancedQuarryMenu.SLOTS, 512, 60);
         this.displayNameTranslatable = "Advanced Quarry";
         this.baseEnergyReqForOperation = 1000;
         this.rangeManager = new RangeManager(

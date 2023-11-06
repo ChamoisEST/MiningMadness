@@ -10,6 +10,7 @@ public class TextureData {
     public Map<Integer, TextureEnum> running = new HashMap<>();
     public Map<Integer, TextureEnum> redstone = new HashMap<>();
     public Map<Integer, TextureEnum> range = new HashMap<>();
+    public Map<Integer, TextureEnum> sidedness = new HashMap<>();
 
 
     public Map<TypeEnum, Map<Integer, TextureEnum>> textureData = new HashMap<>();
@@ -23,10 +24,12 @@ public class TextureData {
         redstone.put(2, TextureEnum.REDSTONE_IGNORE);
         range.put(0, TextureEnum.RANGE_OFF);
         range.put(1, TextureEnum.RANGE_ON);
+        sidedness.put(0, TextureEnum.SIDE_CONFIG);
 
         textureData.put(TypeEnum.MACHINE, running);
         textureData.put(TypeEnum.REDSTONE, redstone);
         textureData.put(TypeEnum.RANGE, range);
+        textureData.put(TypeEnum.SIDEDNESS, sidedness);
 
     }
 

@@ -1,15 +1,19 @@
 package com.chamoisest.miningmadness.compat;
 
 import com.chamoisest.miningmadness.MiningMadness;
+import com.chamoisest.miningmadness.client.screen.VoidFilterScreen;
+import com.chamoisest.miningmadness.compat.ghostfilterhandlers.GhostFilterVoid;
 import com.chamoisest.miningmadness.recipe.MachineInfusingStationRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.recipe.RecipeType;
+import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeManager;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
@@ -37,5 +41,8 @@ public class JEIMiningMadnessPlugin implements IModPlugin {
         registration.addRecipes(INFUSION_TYPE, recipesInfusing);
     }
 
-
+    @Override
+    public void registerGuiHandlers(IGuiHandlerRegistration registration) {
+        registration.addGhostIngredientHandler(VoidFilterScreen.class, new GhostFilterVoid());
+    }
 }
