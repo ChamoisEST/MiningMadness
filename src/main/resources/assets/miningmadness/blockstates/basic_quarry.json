@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "miningmadness:block/basic_quarry",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "miningmadness:block/basic_quarry"
+    },
+    "facing=south": {
+      "model": "miningmadness:block/basic_quarry",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "miningmadness:block/basic_quarry",
+      "y": 270
+    }
+  }
+}

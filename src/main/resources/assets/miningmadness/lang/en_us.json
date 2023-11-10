@@ -1,0 +1,50 @@
+{
+  "block.miningmadness.basic_quarry": "Basic Quarry",
+  "block.miningmadness.advanced_quarry": "Advanced Quarry",
+  "block.miningmadness.machine_infusing_station": "Machine Infusing Station",
+  "block.miningmadness.void_filter": "Void Filter",
+  "block.miningmadness.range_projector": "Range Projector",
+
+
+  "item.miningmadness.lapis_infused_netherite_ingot": "Lapis Infused Netherite Ingot",
+
+  "itemGroup.miningmadness_tab": "Mining Madness Tab",
+
+  "tooltip.miningmadness.not_enough_energy_error": "Machine doesn't have enough energy.",
+  "tooltip.miningmadness.machine_output_full_error": "Machine output is full.",
+  "tooltip.miningmadness.machine_running": "Machine is running.",
+  "tooltip.miningmadness.machine_stopped": "Machine is stopped.",
+  "tooltip.miningmadness.machine_runs_without_redstone": "Run without redstone signal.",
+  "tooltip.miningmadness.machine_runs_with_redstone": "Run with redstone signal.",
+  "tooltip.miningmadness.machine_igonres_redstone": "Ignore redstone signal.",
+  "tooltip.miningmadness.machine_can_run": "Machine can run.",
+  "tooltip.miningmadness.quarry_has_finished": "Quarry has finished.",
+  "tooltip.miningmadness.machine_cant_get_new_stats": "Machine can't get new stats from recipe.",
+  "tooltip.miningmadness.display_range_off": "Show range: off",
+  "tooltip.miningmadness.display_range": "Show range: on",
+
+  "tooltip.miningmadness.speed": "Speed",
+  "tooltip.miningmadness.efficiency": "Efficiency",
+  "tooltip.miningmadness.energy_capacity": "Energy Capacity",
+  "tooltip.miningmadness.fortune": "Fortune",
+  "tooltip.miningmadness.range": "Range",
+  "tooltip.miningmadness.silk_touch": "Silk Touch",
+  "tooltip.miningmadness.max": "Max",
+
+  "tooltip.miningmadness.press": "Press",
+  "tooltip.miningmadness.for_more_info": "for more info.",
+  "tooltip.miningmadness.current_stats": "Current upgrades:",
+
+  "tooltip.miningmadness.energy_usage": "Energy usage",
+  "tooltip.miningmadness.fe_t": "FE/t",
+  "tooltip.miningmadness.energy_per_op": "Energy per operation",
+  "tooltip.miningmadness.fe": "FE",
+  "tooltip.miningmadness.ticks": "t/op",
+
+  "tooltip.miningmadness.void_filter_info": "Place next to a machine and connect any type of Item Cable to void filtered items before sending them to an external inventory.",
+  "tooltip.miningmadness.range_projector_info": "Place on top of a machine to show and adjust it's range.",
+
+  "jei.miningmadness.machine_infusing_station": "Machine Infusing Station",
+
+  "chatmessage.miningmadness.rangeprojector_no_connected_entity": "Range Projector is not placed on top of a supported machine."
+}
