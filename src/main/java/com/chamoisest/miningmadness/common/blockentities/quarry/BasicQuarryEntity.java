@@ -1,6 +1,10 @@
 package com.chamoisest.miningmadness.common.blockentities.quarry;
 
+import com.chamoisest.miningmadness.MiningMadness;
 import com.chamoisest.miningmadness.common.blockentities.base.BaseInfusionEntity;
+import com.chamoisest.miningmadness.common.blockentities.base.BaseMenuEntity;
+import com.chamoisest.miningmadness.common.capabilities.infusion.IInfusionCapability;
+import com.chamoisest.miningmadness.common.capabilities.infusion.InfusionCapability;
 import com.chamoisest.miningmadness.common.capabilities.infusion.InfusionCapabilityProvider;
 import com.chamoisest.miningmadness.common.containers.BasicQuarryMenu;
 import com.chamoisest.miningmadness.enums.MachineInfusionEnum;
@@ -12,16 +16,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-
-public class BasicQuarryEntity extends BaseInfusionEntity{
+public class BasicQuarryEntity extends BaseInfusionEntity {
 
     protected final ContainerData data = new ContainerData() {
 
@@ -44,6 +46,7 @@ public class BasicQuarryEntity extends BaseInfusionEntity{
     public BasicQuarryEntity(BlockPos pPos, BlockState pBlockState) {
         super(BlockEntitySetup.BASIC_QUARRY.get(), pPos, pBlockState, BasicQuarryMenu.SLOTS);
         setDisplayName("Basic Quarry");
+        activateInfusionTypes();
         getInfusionCapability().addInfusion(MachineInfusionEnum.FORTUNE, 50);
     }
 
@@ -78,7 +81,7 @@ public class BasicQuarryEntity extends BaseInfusionEntity{
         setMaxSilkTouch();
     }
 
-    public static void tick(Level level, BlockPos pos, BlockState state, BasicQuarryEntity pEntity){
+    public void tick(){
 
     }
 }

@@ -50,11 +50,13 @@ public class BasicQuarry extends BaseDirectionalBlock{
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return createTickerHelper(pBlockEntityType, BlockEntitySetup.BASIC_QUARRY.get(), BasicQuarryEntity::tick);
-    }
-
-    @Override
-    public @Nullable <T extends BlockEntity> GameEventListener getListener(ServerLevel pLevel, T pBlockEntity) {
-        return null;
+        if (pLevel.isClientSide()) {
+            return null;
+        }
+        return (lvl, pos, blockState, t) -> {
+            if (t instanceof BasicQuarryEntity entity) {
+                entity.tick();
+            }
+        };
     }
 }

@@ -3,7 +3,6 @@ package com.chamoisest.miningmadness.common.blockentities.base;
 import com.chamoisest.miningmadness.MiningMadness;
 import com.chamoisest.miningmadness.common.capabilities.infusion.IInfusionCapability;
 import com.chamoisest.miningmadness.common.capabilities.infusion.InfusionCapability;
-import com.chamoisest.miningmadness.common.capabilities.infusion.InfusionCapabilityProvider;
 import com.chamoisest.miningmadness.enums.MachineInfusionEnum;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -11,25 +10,23 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
 
 public abstract class BaseInfusionEntity extends BaseMenuEntity{
+
     private static final String INFUSION_TAG = "infusion";
-    public final InfusionCapability infusionCapability = new InfusionCapability();
-    protected LazyOptional<IInfusionCapability> lazyInfusionHandler = LazyOptional.of(() -> infusionCapability);
+    protected final InfusionCapability infusionCapability = new InfusionCapability();
+    protected final LazyOptional<IInfusionCapability> lazyInfusionHandler = LazyOptional.of(() -> infusionCapability);
 
     public BaseInfusionEntity(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState, int invSize) {
         super(pType, pPos, pBlockState, invSize);
-        activateInfusionTypes();
     }
 
-    public InfusionCapability getInfusionCapability(){
-        return infusionCapability;
-    }
+    public abstract void activateInfusionTypes();
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
@@ -39,12 +36,13 @@ public abstract class BaseInfusionEntity extends BaseMenuEntity{
         return super.getCapability(cap, side);
     }
 
-    public abstract void activateInfusionTypes();
+    public InfusionCapability getInfusionCapability(){
+        return infusionCapability;
+    }
 
     @Override
     public void onLoad() {
         super.onLoad();
-        lazyInfusionHandler = LazyOptional.of(() -> infusionCapability);
     }
 
     @Override

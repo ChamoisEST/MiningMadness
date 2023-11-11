@@ -5,10 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -19,7 +16,7 @@ import net.minecraft.world.level.gameevent.GameEventListener;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class BaseDirectionalBlock extends BaseEntityBlock {
+public abstract class BaseDirectionalBlock extends Block implements EntityBlock {
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
@@ -50,8 +47,4 @@ public abstract class BaseDirectionalBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public abstract <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType);
-
-    @Nullable
-    @Override
-    public abstract <T extends BlockEntity> GameEventListener getListener(ServerLevel pLevel, T pBlockEntity);
 }
