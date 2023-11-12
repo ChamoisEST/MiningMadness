@@ -36,10 +36,7 @@ public class MiningMadness {
 
     @SubscribeEvent
     public static void onAttachCapabilities(AttachCapabilitiesEvent<BlockEntity> event){
-        if(event.getObject().getCapability(MiningMadness.INFUSION_CAPABILITY).isPresent()){
-            System.out.println("Capability attached");
-            event.addCapability(new ResourceLocation(MiningMadness.MODID, "infusion"), new InfusionCapabilityProvider());
-        }
+        event.addCapability(new ResourceLocation(MiningMadness.MODID, "infusion"), new InfusionCapabilityProvider());
     }
 
     @SubscribeEvent

@@ -2,24 +2,16 @@ package com.chamoisest.miningmadness.client.screens.base;
 
 import com.chamoisest.miningmadness.MiningMadness;
 import com.chamoisest.miningmadness.client.screens.elements.UpgradeBar;
-import com.chamoisest.miningmadness.common.capabilities.infusion.InfusionCapabilityProvider;
 import com.chamoisest.miningmadness.common.containers.base.BaseMenu;
 import com.chamoisest.miningmadness.enums.MachineInfusionEnum;
 import com.chamoisest.miningmadness.util.MouseUtil;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 import java.util.List;
-import java.util.Optional;
 
 public abstract class BaseScreen<T extends BaseMenu<?>> extends AbstractContainerScreen<T> {
     protected T menu;

@@ -1,7 +1,6 @@
 package com.chamoisest.miningmadness.setup;
 
 import com.chamoisest.miningmadness.MiningMadness;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;

@@ -1,25 +1,16 @@
 package com.chamoisest.miningmadness.common.blockentities.quarry;
 
-import com.chamoisest.miningmadness.MiningMadness;
 import com.chamoisest.miningmadness.common.blockentities.base.BaseInfusionEntity;
-import com.chamoisest.miningmadness.common.blockentities.base.BaseMenuEntity;
-import com.chamoisest.miningmadness.common.capabilities.infusion.IInfusionCapability;
-import com.chamoisest.miningmadness.common.capabilities.infusion.InfusionCapability;
-import com.chamoisest.miningmadness.common.capabilities.infusion.InfusionCapabilityProvider;
 import com.chamoisest.miningmadness.common.containers.BasicQuarryMenu;
 import com.chamoisest.miningmadness.enums.MachineInfusionEnum;
 import com.chamoisest.miningmadness.setup.BlockEntitySetup;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
