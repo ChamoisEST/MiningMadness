@@ -18,14 +18,12 @@ public class BasicQuarryScreen extends BaseScreen<BasicQuarryMenu> {
     }
 
     @Override
-    protected void renderLabels(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY) {
-        super.renderLabels(pGuiGraphics, pMouseX, pMouseY);
-        renderUpgradeBars(pGuiGraphics, 124, 17, pMouseX, pMouseY);
-    }
+    protected void addWidgets() {
+        int guiX = (width - imageWidth) / 2;
+        int guiY = (height - imageHeight) / 2;
 
-    @Override
-    public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
-        super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
+        addEnergyWidget(guiX + 153, guiY + 11);
+        addUpgradeBars(guiX + 124, guiY + 17);
     }
 
     @Override

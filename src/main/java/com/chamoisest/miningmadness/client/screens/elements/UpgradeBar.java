@@ -2,11 +2,14 @@ package com.chamoisest.miningmadness.client.screens.elements;
 
 import com.chamoisest.miningmadness.MiningMadness;
 import com.chamoisest.miningmadness.enums.MachineInfusionEnum;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+
+import java.util.List;
 
 public class UpgradeBar extends AbstractWidget {
     private final ResourceLocation TEXTURE = new ResourceLocation(MiningMadness.MODID, "textures/gui/elements/gui_machine_stat_bar.png");
@@ -14,6 +17,8 @@ public class UpgradeBar extends AbstractWidget {
     private final int y;
     private final int width = 23;
     private final int height = 3;
+    private final MachineInfusionEnum infusionEnum;
+    private final Font font;
 
     private final int color1;
     private final int color2;
@@ -21,8 +26,10 @@ public class UpgradeBar extends AbstractWidget {
     private final int current;
     private final int max;
 
-    public UpgradeBar(int x, int y, int current, int max, MachineInfusionEnum infusionEnum) {
+    public UpgradeBar(Font font, int x, int y, int current, int max, MachineInfusionEnum infusionEnum) {
         super(x, y, 23, 3, Component.empty());
+        this.infusionEnum = infusionEnum;
+        this.font = font;
         this.x = x;
         this.y = y;
         this.current = current;
@@ -41,6 +48,11 @@ public class UpgradeBar extends AbstractWidget {
     @Override
     protected void renderWidget(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         renderUpgradeBar(pGuiGraphics);
+
+        if(this.isHovered()){
+            List<Component> text = List.of(infusionEnum.getTooltipPrefix(), Component.literal(current + "/" + max));
+            pGuiGraphics.renderComponentTooltip(this.font, text, pMouseX, pMouseY);
+        }
     }
 
     @Override

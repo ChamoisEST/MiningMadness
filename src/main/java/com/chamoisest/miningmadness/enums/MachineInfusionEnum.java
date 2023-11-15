@@ -12,6 +12,23 @@ public enum MachineInfusionEnum {
     ENERGY_CAPACITY, MAX_ENERGY_CAPACITY,
     SILK_TOUCH, MAX_SILK_TOUCH;
 
+    public MachineInfusionEnum getOpposite(){
+        return switch (this){
+            case FORTUNE -> MAX_FORTUNE;
+            case SPEED -> MAX_SPEED;
+            case EFFICIENCY -> MAX_EFFICIENCY;
+            case RANGE -> MAX_RANGE;
+            case ENERGY_CAPACITY -> MAX_ENERGY_CAPACITY;
+            case SILK_TOUCH -> MAX_SILK_TOUCH;
+            case MAX_FORTUNE -> FORTUNE;
+            case MAX_SPEED -> SPEED;
+            case MAX_EFFICIENCY -> EFFICIENCY;
+            case MAX_RANGE -> RANGE;
+            case MAX_ENERGY_CAPACITY -> ENERGY_CAPACITY;
+            case MAX_SILK_TOUCH -> SILK_TOUCH;
+        };
+    }
+
     public MutableComponent getTooltipPrefix(){
         return switch (this) {
             case MAX_FORTUNE -> Component.translatable("tooltip.miningmadness.fortune").withStyle(MAX_FORTUNE.getStyle());

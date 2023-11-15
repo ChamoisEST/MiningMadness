@@ -1,39 +1,41 @@
 package com.chamoisest.miningmadness.common.network;
+
 import com.chamoisest.miningmadness.enums.MachineInfusionEnum;
-import com.chamoisest.miningmadness.util.InfusionUtil;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkEvent;
 
-import java.util.Map;
 import java.util.function.Supplier;
 
-public class PacketSyncInfusionToClient extends InfusionUtil {
+public class PacketSyncInfusionToClient {
 
-    public PacketSyncInfusionToClient(Map<MachineInfusionEnum, Integer> updateData){
-        for(Map.Entry<MachineInfusionEnum, Integer> entry : updateData.entrySet()){
-            setInfusionValue(entry.getKey(), entry.getValue());
-        }
+    public final BlockPos pos;
+    public final MachineInfusionEnum type;
+    public final int value;
+    public PacketSyncInfusionToClient(MachineInfusionEnum type, int value, BlockPos pos){
+        this.type = type;
+        this.value = value;
+        this.pos = pos;
     }
 
-    public PacketSyncInfusionToClient(FriendlyByteBuf buf) {
-        for(MachineInfusionEnum type : MachineInfusionEnum.values()){
-            setInfusionValue(type, buf.readInt());
-        }
+    public PacketSyncInfusionToClient(FriendlyByteBuf buf){
+        this(buf.readEnum(MachineInfusionEnum.class), buf.readInt(), buf.readBlockPos());
     }
 
-    public void toBytes(FriendlyByteBuf buf) {
-        for(MachineInfusionEnum type : MachineInfusionEnum.values()){
-            buf.writeInt(getInfusionValue(type));
-        }
+    public void toBytes(FriendlyByteBuf buf){
+        buf.writeEnum(type);
+        buf.writeInt(value);
+        buf.writeBlockPos(pos);
     }
 
-    public boolean handle(Supplier<NetworkEvent.Context> supplier){
+    public static void handle(PacketSyncInfusionToClient msg, Supplier<NetworkEvent.Context> supplier){
         NetworkEvent.Context ctx = supplier.get();
         ctx.enqueueWork(() -> {
-            ServerPlayer player = ctx.getSender();
-
+            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ClientPacketHandler.handleInfusionPacket(msg, supplier));
         });
-        return true;
+        ctx.setPacketHandled(true);
     }
 }

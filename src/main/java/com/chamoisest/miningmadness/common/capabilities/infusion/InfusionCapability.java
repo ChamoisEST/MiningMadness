@@ -1,13 +1,13 @@
 package com.chamoisest.miningmadness.common.capabilities.infusion;
 
 import com.chamoisest.miningmadness.enums.MachineInfusionEnum;
-import com.chamoisest.miningmadness.util.InfusionUtil;
+import com.chamoisest.miningmadness.util.interfaces.IInfusionUtil;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.util.INBTSerializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InfusionCapability extends InfusionUtil implements IInfusionCapability, INBTSerializable<CompoundTag> {
+public class InfusionCapability implements IInfusionCapability, INBTSerializable<CompoundTag>, IInfusionUtil {
 
     public InfusionCapability() {
 

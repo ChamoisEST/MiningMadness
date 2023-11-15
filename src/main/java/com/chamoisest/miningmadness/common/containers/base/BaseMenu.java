@@ -11,6 +11,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 public abstract class BaseMenu<T extends BlockEntity> extends AbstractContainerMenu {
 
     public T blockEntity;
