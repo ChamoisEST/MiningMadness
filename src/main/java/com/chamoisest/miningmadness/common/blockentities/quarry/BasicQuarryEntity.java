@@ -2,20 +2,15 @@ package com.chamoisest.miningmadness.common.blockentities.quarry;
 
 import com.chamoisest.miningmadness.common.blockentities.base.BaseInfusionEntity;
 import com.chamoisest.miningmadness.common.containers.BasicQuarryMenu;
+import com.chamoisest.miningmadness.enums.MachineInfusionEnum;
 import com.chamoisest.miningmadness.setup.BlockEntitySetup;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -67,17 +62,16 @@ public class BasicQuarryEntity extends BaseInfusionEntity {
 
     @Override
     public void activateInfusionTypes() {
-        setMaxSpeed(360);
-        setMaxEfficiency(360);
-        setMaxFortune(360);
-        setMaxRange(45);
-        setMaxEnergyCapacityInfusion(100);
-        setMaxSilkTouch();
+        activateInfusion(MachineInfusionEnum.MAX_SPEED, 360);
+        activateInfusion(MachineInfusionEnum.MAX_EFFICIENCY, 360);
+        activateInfusion(MachineInfusionEnum.MAX_FORTUNE, 360);
+        activateInfusion(MachineInfusionEnum.MAX_RANGE, 360);
+        activateInfusion(MachineInfusionEnum.MAX_ENERGY_CAPACITY, 360);
+        activateInfusion(MachineInfusionEnum.MAX_SILK_TOUCH, 360);
     }
 
     public void tick(){
-        if(this.level == null || this.level.isClientSide()) return;
-
+        if(this.level == null) return;
     }
 
     @Override

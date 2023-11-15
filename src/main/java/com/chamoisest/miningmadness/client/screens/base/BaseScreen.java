@@ -53,16 +53,15 @@ public abstract class BaseScreen<T extends BaseMenu<?>> extends AbstractContaine
 
     protected void addUpgradeBars(int startX, int startY) {
         if(this.getMenu().blockEntity instanceof BaseInfusionEntity infusionEntity) {
+
             InfusionCapability cap = infusionEntity.getInfusionCapability();
             EnumMap<MachineInfusionEnum, Integer> activeInfusions = cap.getActiveInfusionMap();
             int iterator = 0;
+
             for (Map.Entry<MachineInfusionEnum, Integer> entry : activeInfusions.entrySet()) {
-                if(cap.isCurrentValue(entry.getKey())) continue;
+                if(entry.getKey().isCurrentValue()) continue;
 
-                int currentValue = cap.getCurrentValueByMaxType(entry.getKey());
-                int maxValue = entry.getValue();
-
-                this.addRenderableWidget(new UpgradeBar(this.font, startX, startY + 6 * iterator, currentValue, maxValue, entry.getKey()));
+                this.addRenderableWidget(new UpgradeBar(this.font, startX, startY + 6 * iterator, infusionEntity, entry.getKey()));
 
                 iterator++;
             }
@@ -70,12 +69,12 @@ public abstract class BaseScreen<T extends BaseMenu<?>> extends AbstractContaine
     }
 
     protected void addEnergyWidget(int startX, int startY){
-        if(this.getMenu().blockEntity instanceof BaseEnergyEntity) {
+        if(this.getMenu().blockEntity instanceof BaseEnergyEntity energyEntity) {
             this.addRenderableWidget(new EnergyInfoArea(
                     this.font,
                     startX,
                     startY,
-                    (BaseEnergyEntity) this.getMenu().blockEntity));
+                    energyEntity));
         }
     }
 }

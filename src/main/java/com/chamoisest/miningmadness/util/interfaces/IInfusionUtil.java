@@ -58,20 +58,6 @@ public interface IInfusionUtil {
         };
     }
 
-    default boolean isCurrentValue(MachineInfusionEnum type){
-        return switch (type){
-            case RANGE, SPEED, ENERGY_CAPACITY, EFFICIENCY, FORTUNE, SILK_TOUCH -> true;
-            default -> false;
-        };
-    }
-
-    default boolean isMaxValue(MachineInfusionEnum type){
-        return switch (type){
-            case MAX_RANGE, MAX_SPEED, MAX_ENERGY_CAPACITY, MAX_EFFICIENCY, MAX_FORTUNE, MAX_SILK_TOUCH -> true;
-            default -> false;
-        };
-    }
-
     default EnumMap<MachineInfusionEnum, Integer> getActiveInfusionMap(){
         return infusionValues;
     }

@@ -1,6 +1,7 @@
 package com.chamoisest.miningmadness.common.capabilities.infusion;
 
 import com.chamoisest.miningmadness.MiningMadness;
+import com.chamoisest.miningmadness.enums.MachineInfusionEnum;
 import net.minecraft.core.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -22,7 +23,12 @@ public class InfusionCapabilityProvider implements ICapabilityProvider {
     @Nonnull
     private InfusionCapability createInfusionCapability() {
         if(infusionCapability == null){
-            infusionCapability = new InfusionCapability();
+            infusionCapability = new InfusionCapability(){
+                @Override
+                public void onInfusionChanged(MachineInfusionEnum type, int value) {
+
+                }
+            };
         }
         return infusionCapability;
     }

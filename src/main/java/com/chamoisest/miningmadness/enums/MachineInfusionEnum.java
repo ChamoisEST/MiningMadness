@@ -76,4 +76,18 @@ public enum MachineInfusionEnum {
             default -> 0;
         };
     }
+
+    public boolean isCurrentValue(){
+        return switch (this){
+            case RANGE, SPEED, ENERGY_CAPACITY, EFFICIENCY, FORTUNE, SILK_TOUCH -> true;
+            default -> false;
+        };
+    }
+
+    public boolean isMaxValue(){
+        return switch (this){
+            case MAX_RANGE, MAX_SPEED, MAX_ENERGY_CAPACITY, MAX_EFFICIENCY, MAX_FORTUNE, MAX_SILK_TOUCH -> true;
+            default -> false;
+        };
+    }
 }

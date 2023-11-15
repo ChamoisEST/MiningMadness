@@ -21,8 +21,18 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class BaseInfusionEntity extends BaseEnergyEntity implements IInfusable {
 
+    public static InfusionCapability infusionCapability;
+    public static LazyOptional<IInfusionCapability> lazyInfusionHandler = LazyOptional.empty();
+
     public BaseInfusionEntity(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState, int invSize) {
         super(pType, pPos, pBlockState, invSize);
+        infusionCapability = new InfusionCapability(){
+            @Override
+            public void onInfusionChanged(MachineInfusionEnum type, int value) {
+                setChanged();
+                setInfusionChanged(type, value);
+            }
+        };
     }
 
     @Override
@@ -35,12 +45,6 @@ public abstract class BaseInfusionEntity extends BaseEnergyEntity implements IIn
 
     public InfusionCapability getInfusionCapability(){
         return infusionCapability;
-    }
-
-    @Override
-    public void invalidateCaps() {
-        super.invalidateCaps();
-        lazyInfusionHandler.invalidate();
     }
 
     @Override
@@ -61,16 +65,21 @@ public abstract class BaseInfusionEntity extends BaseEnergyEntity implements IIn
     @Override
     public void onLoad() {
         super.onLoad();
+        lazyInfusionHandler = LazyOptional.of(() -> infusionCapability);
         activateInfusionTypes();
+    }
+
+    @Override
+    public void invalidateCaps() {
+        super.invalidateCaps();
+        lazyInfusionHandler.invalidate();
     }
 
     public void sendUpdateInfusionPacket(MachineInfusionEnum type, int value){
         if(this.level == null) return;
         if(!level.isClientSide()) {
-
             BlockPos pos = this.getBlockPos();
             LevelChunk chunk = this.level.getChunkAt(pos);
-
             MessagesSetup.sendToPlayersInChunk(new PacketSyncInfusionToClient(type, value, pos), chunk);
         }
     }
@@ -78,5 +87,13 @@ public abstract class BaseInfusionEntity extends BaseEnergyEntity implements IIn
     @Override
     public void setInfusionChanged(MachineInfusionEnum type, int value) {
         sendUpdateInfusionPacket(type, value);
+    }
+
+    @Override
+    public void activateInfusion(MachineInfusionEnum maxType, int maxValue) {
+        if(maxType.isMaxValue()) {
+            infusionCapability.setInfusionValue(maxType, maxValue);
+            initializeInfusionPacket(maxType, maxValue);
+        }
     }
 }
