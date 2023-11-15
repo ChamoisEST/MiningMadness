@@ -1,9 +1,14 @@
 package com.chamoisest.miningmadness;
 
+import com.chamoisest.miningmadness.common.blockentities.interfaces.IInfusable;
 import com.chamoisest.miningmadness.common.capabilities.infusion.InfusionCapability;
 import com.chamoisest.miningmadness.common.capabilities.infusion.InfusionCapabilityProvider;
 import com.chamoisest.miningmadness.setup.*;
+import com.chamoisest.miningmadness.util.NBTTags;
+import com.chamoisest.miningmadness.util.interfaces.IInfusionUtil;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -37,6 +42,16 @@ public class MiningMadness {
     @SubscribeEvent
     public static void onAttachCapabilities(AttachCapabilitiesEvent<BlockEntity> event){
         event.addCapability(new ResourceLocation(MiningMadness.MODID, "infusion"), new InfusionCapabilityProvider());
+    }
+
+    @SubscribeEvent
+    public static void onAttachCapabilitiesToItemStack(AttachCapabilitiesEvent<ItemStack> event){
+        if(event.getObject().hasTag()){
+            CompoundTag tag = event.getObject().getTag();
+            if(tag != null && tag.contains(NBTTags.INFUSION_TAG)){
+                event.addCapability(new ResourceLocation(MiningMadness.MODID, "infusion"), new InfusionCapabilityProvider());
+            }
+        }
     }
 
     @SubscribeEvent

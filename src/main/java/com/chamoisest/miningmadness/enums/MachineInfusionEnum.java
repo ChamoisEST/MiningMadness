@@ -90,4 +90,21 @@ public enum MachineInfusionEnum {
             default -> false;
         };
     }
+
+    public String getInfusionNBTTag(){
+        return switch(this){
+            case RANGE -> "range";
+            case MAX_RANGE -> "max_range";
+            case SPEED -> "speed";
+            case MAX_SPEED -> "max_speed";
+            case ENERGY_CAPACITY -> "energy_capacity";
+            case MAX_ENERGY_CAPACITY -> "max_energy_capacity";
+            case EFFICIENCY -> "efficiency";
+            case MAX_EFFICIENCY -> "max_efficiency";
+            case FORTUNE -> "fortune";
+            case MAX_FORTUNE -> "max_fortune";
+            case SILK_TOUCH -> "silk_touch";
+            case MAX_SILK_TOUCH -> "max_silk_touch";
+        };
+    }
 }

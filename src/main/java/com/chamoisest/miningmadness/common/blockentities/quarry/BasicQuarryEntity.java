@@ -65,9 +65,9 @@ public class BasicQuarryEntity extends BaseInfusionEntity {
         activateInfusion(MachineInfusionEnum.MAX_SPEED, 360);
         activateInfusion(MachineInfusionEnum.MAX_EFFICIENCY, 360);
         activateInfusion(MachineInfusionEnum.MAX_FORTUNE, 360);
-        activateInfusion(MachineInfusionEnum.MAX_RANGE, 360);
-        activateInfusion(MachineInfusionEnum.MAX_ENERGY_CAPACITY, 360);
-        activateInfusion(MachineInfusionEnum.MAX_SILK_TOUCH, 360);
+        activateInfusion(MachineInfusionEnum.MAX_RANGE, 45);
+        activateInfusion(MachineInfusionEnum.MAX_ENERGY_CAPACITY, 100);
+        activateInfusion(MachineInfusionEnum.MAX_SILK_TOUCH, 1);
     }
 
     public void tick(){

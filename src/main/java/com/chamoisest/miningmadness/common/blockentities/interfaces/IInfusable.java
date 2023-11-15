@@ -6,8 +6,6 @@ import com.chamoisest.miningmadness.enums.MachineInfusionEnum;
 import net.minecraftforge.common.util.LazyOptional;
 
 public interface IInfusable {
-    String INFUSION_TAG = "infusion";
-
     void activateInfusionTypes();
     void setInfusionChanged(MachineInfusionEnum type, int value);
 

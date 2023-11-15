@@ -3,6 +3,7 @@ package com.chamoisest.miningmadness.common.blockentities.base;
 import com.chamoisest.miningmadness.common.network.PacketSyncEnergyToClient;
 import com.chamoisest.miningmadness.setup.MessagesSetup;
 import com.chamoisest.miningmadness.util.MMEnergyStorage;
+import com.chamoisest.miningmadness.util.NBTTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -17,8 +18,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class BaseEnergyEntity extends BaseMenuEntity{
-
-    private static final String ENERGY_TAG = "energy";
 
     protected final MMEnergyStorage energyHandler;
 
@@ -69,14 +68,14 @@ public abstract class BaseEnergyEntity extends BaseMenuEntity{
 
     @Override
     protected void saveAdditional(CompoundTag pTag) {
-        pTag.putInt(ENERGY_TAG, getEnergyHandler().getEnergyStored());
+        pTag.putInt(NBTTags.ENERGY_TAG, getEnergyHandler().getEnergyStored());
         super.saveAdditional(pTag);
     }
 
     @Override
     public void load(@NotNull CompoundTag pTag) {
         super.load(pTag);
-        energyHandler.setEnergy(pTag.getInt(ENERGY_TAG));
+        energyHandler.setEnergy(pTag.getInt(NBTTags.ENERGY_TAG));
     }
 
     @Override
@@ -90,7 +89,7 @@ public abstract class BaseEnergyEntity extends BaseMenuEntity{
     @Override
     public CompoundTag getUpdateTag() {
         CompoundTag tag = new CompoundTag();
-        tag.putInt(ENERGY_TAG, getEnergyHandler().getEnergyStored());
+        tag.putInt(NBTTags.ENERGY_TAG, getEnergyHandler().getEnergyStored());
         sendUpdateEnergyPacket();
         return tag;
     }

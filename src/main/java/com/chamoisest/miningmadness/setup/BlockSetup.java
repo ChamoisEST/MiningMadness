@@ -2,12 +2,11 @@ package com.chamoisest.miningmadness.setup;
 
 import com.chamoisest.miningmadness.MiningMadness;
 import com.chamoisest.miningmadness.common.blocks.quarry.BasicQuarry;
+import com.chamoisest.miningmadness.common.items.base.BaseInfusionBlockItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -17,11 +16,10 @@ import java.util.function.Supplier;
 public class BlockSetup {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MiningMadness.MODID);
 
-    public static final RegistryObject<Block> BASIC_QUARRY = registerBlock("basic_quarry", () -> new BasicQuarry(
-            BlockBehaviour.Properties.copy(Blocks.DISPENSER)
-                    .strength(5.0f)
-                    .pushReaction(PushReaction.DESTROY)
-    ));
+    public static final RegistryObject<Block> BASIC_QUARRY = registerBlockWithCustomItem("basic_quarry", () -> new BasicQuarry(
+            BlockBehaviour.Properties.of().strength(0.5f)
+    ),
+            () -> new BaseInfusionBlockItem(BlockSetup.BASIC_QUARRY.get(), new Item.Properties()));
 
     private static RegistryObject<Block> registerBlock(String name, Supplier<? extends Block> supplier){
         RegistryObject<Block> block = BLOCKS.register(name, supplier);

@@ -7,6 +7,7 @@ import com.chamoisest.miningmadness.common.capabilities.infusion.InfusionCapabil
 import com.chamoisest.miningmadness.common.network.PacketSyncInfusionToClient;
 import com.chamoisest.miningmadness.enums.MachineInfusionEnum;
 import com.chamoisest.miningmadness.setup.MessagesSetup;
+import com.chamoisest.miningmadness.util.NBTTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -49,7 +50,7 @@ public abstract class BaseInfusionEntity extends BaseEnergyEntity implements IIn
 
     @Override
     protected void saveAdditional(CompoundTag pTag) {
-        pTag.put(INFUSION_TAG, infusionCapability.serializeNBT());
+        pTag.put(NBTTags.INFUSION_TAG, infusionCapability.serializeNBT());
 
         super.saveAdditional(pTag);
     }
@@ -57,8 +58,8 @@ public abstract class BaseInfusionEntity extends BaseEnergyEntity implements IIn
     @Override
     public void load(CompoundTag pTag) {
         super.load(pTag);
-        if(pTag.contains(INFUSION_TAG)){
-            infusionCapability.deserializeNBT(pTag.getCompound(INFUSION_TAG));
+        if(pTag.contains(NBTTags.INFUSION_TAG)){
+            infusionCapability.deserializeNBT(pTag.getCompound(NBTTags.INFUSION_TAG));
         }
     }
 

@@ -1,6 +1,7 @@
 package com.chamoisest.miningmadness.common.blockentities.base;
 
 import com.chamoisest.miningmadness.common.blockentities.interfaces.ICustomMenuProvider;
+import com.chamoisest.miningmadness.util.NBTTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -26,8 +27,6 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class BaseMenuEntity extends BlockEntity implements ICustomMenuProvider {
     private String displayName;
-
-    private static final String ITEM_TAG = "inventory";
 
     public final ItemStackHandler itemHandler;
     protected LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
@@ -83,14 +82,14 @@ public abstract class BaseMenuEntity extends BlockEntity implements ICustomMenuP
 
     @Override
     protected void saveAdditional(CompoundTag pTag) {
-        pTag.put(ITEM_TAG, itemHandler.serializeNBT());
+        pTag.put(NBTTags.ITEM_TAG, itemHandler.serializeNBT());
         super.saveAdditional(pTag);
     }
 
     @Override
     public void load(@NotNull CompoundTag pTag) {
         super.load(pTag);
-        itemHandler.deserializeNBT(pTag.getCompound(ITEM_TAG));
+        itemHandler.deserializeNBT(pTag.getCompound(NBTTags.ITEM_TAG));
     }
 
     @Override
